@@ -1,0 +1,4 @@
+[submodule "src/plugins-hosted-openssl"]
+	path = src/plugins-hosted-openssl
+	url = https://github.com/coronalabs/com.coronalabs-plugin.openssl
+	branch = master

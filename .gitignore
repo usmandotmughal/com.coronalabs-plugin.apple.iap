@@ -1,1 +1,11 @@
 plugins/*.tgz
+build/
+*xcuser*
+src/OUT/
+src/tvos/Corona_plugin_openssl.framework
+src/ios/BuiltCryptohelperPlugin
+src/ios/BuiltPlugin
+src/ios/libplugin_iap.a
+src/ios/libplugin_iap_cryptohelper.a
+src/mac/plugin_apple_iap.dylib
+src/mac/plugin_apple_iap_cryptohelper.dylib

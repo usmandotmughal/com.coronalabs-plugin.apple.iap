@@ -1,0 +1,299 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		F51D7903216C42AC00E9721D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F51D7902216C42AC00E9721D /* main.m */; };
+		F51D790A216C42F700E9721D /* IAPCryptoHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = F51D7909216C42F700E9721D /* IAPCryptoHelper.m */; };
+		F51D790E216C448C00E9721D /* plugin_openssl.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F51D790D216C448C00E9721D /* plugin_openssl.dylib */; };
+		F5407BD7216C511E005E4701 /* plugin_openssl.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = F51D790D216C448C00E9721D /* plugin_openssl.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		F51D78FD216C42AC00E9721D /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 12;
+			dstPath = "";
+			dstSubfolderSpec = 6;
+			files = (
+				F5407BD7216C511E005E4701 /* plugin_openssl.dylib in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		F51D78FF216C42AC00E9721D /* ReceiptTester */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = ReceiptTester; sourceTree = BUILT_PRODUCTS_DIR; };
+		F51D7902216C42AC00E9721D /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		F51D7909216C42F700E9721D /* IAPCryptoHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IAPCryptoHelper.m; path = ../shared/IAPCryptoHelper.m; sourceTree = "<group>"; };
+		F51D790D216C448C00E9721D /* plugin_openssl.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = plugin_openssl.dylib; path = "../plugins-hosted-openssl/plugins/2016.2883/mac-sim/plugin_openssl.dylib"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		F51D78FC216C42AC00E9721D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F51D790E216C448C00E9721D /* plugin_openssl.dylib in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		F51D78F6216C42AC00E9721D = {
+			isa = PBXGroup;
+			children = (
+				F51D7901216C42AC00E9721D /* ReceiptTester */,
+				F51D7900216C42AC00E9721D /* Products */,
+				F51D790C216C448C00E9721D /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		F51D7900216C42AC00E9721D /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				F51D78FF216C42AC00E9721D /* ReceiptTester */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		F51D7901216C42AC00E9721D /* ReceiptTester */ = {
+			isa = PBXGroup;
+			children = (
+				F51D7909216C42F700E9721D /* IAPCryptoHelper.m */,
+				F51D7902216C42AC00E9721D /* main.m */,
+			);
+			name = ReceiptTester;
+			sourceTree = "<group>";
+		};
+		F51D790C216C448C00E9721D /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				F51D790D216C448C00E9721D /* plugin_openssl.dylib */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		F51D78FE216C42AC00E9721D /* ReceiptTester */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F51D7906216C42AC00E9721D /* Build configuration list for PBXNativeTarget "ReceiptTester" */;
+			buildPhases = (
+				F51D78FB216C42AC00E9721D /* Sources */,
+				F51D78FC216C42AC00E9721D /* Frameworks */,
+				F51D78FD216C42AC00E9721D /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ReceiptTester;
+			productName = ReceiptTester;
+			productReference = F51D78FF216C42AC00E9721D /* ReceiptTester */;
+			productType = "com.apple.product-type.tool";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		F51D78F7216C42AC00E9721D /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 1000;
+				ORGANIZATIONNAME = "Vlad Shcherban";
+				TargetAttributes = {
+					F51D78FE216C42AC00E9721D = {
+						CreatedOnToolsVersion = 10.0;
+					};
+				};
+			};
+			buildConfigurationList = F51D78FA216C42AC00E9721D /* Build configuration list for PBXProject "ReceiptTester" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = F51D78F6216C42AC00E9721D;
+			productRefGroup = F51D7900216C42AC00E9721D /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				F51D78FE216C42AC00E9721D /* ReceiptTester */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		F51D78FB216C42AC00E9721D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F51D790A216C42F700E9721D /* IAPCryptoHelper.m in Sources */,
+				F51D7903216C42AC00E9721D /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		F51D7904216C42AC00E9721D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				OTHER_CFLAGS = "-DIAP_TESTBED";
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		F51D7905216C42AC00E9721D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				OTHER_CFLAGS = "-DIAP_TESTBED";
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		F51D7907216C42AC00E9721D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SYSTEM_HEADER_SEARCH_PATHS = "/Users/vlad/Projects/plugins-apple-iap/plugins-openssl/sdk-openssl/apple/include";
+			};
+			name = Debug;
+		};
+		F51D7908216C42AC00E9721D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SYSTEM_HEADER_SEARCH_PATHS = "/Users/vlad/Projects/plugins-apple-iap/plugins-openssl/sdk-openssl/apple/include";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		F51D78FA216C42AC00E9721D /* Build configuration list for PBXProject "ReceiptTester" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F51D7904216C42AC00E9721D /* Debug */,
+				F51D7905216C42AC00E9721D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F51D7906216C42AC00E9721D /* Build configuration list for PBXNativeTarget "ReceiptTester" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F51D7907216C42AC00E9721D /* Debug */,
+				F51D7908216C42AC00E9721D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = F51D78F7216C42AC00E9721D /* Project object */;
+}
