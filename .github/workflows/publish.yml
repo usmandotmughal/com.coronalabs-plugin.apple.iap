@@ -9,3 +9,5 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: solar2d/directory-plugin-action@main
+        with:
+          pat: ${{ secrets.ISSUE_PAT }}
