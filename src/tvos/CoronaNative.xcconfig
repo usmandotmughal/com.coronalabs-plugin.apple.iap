@@ -2,7 +2,10 @@
 
 CORONA_ROOT=$HOME/Library/Application Support/Corona/Native
 
-FRAMEWORK_SEARCH_PATHS = $(inherited) "$CORONA_ROOT/Corona/tvos/frameworks/" "$PROJECT_DIR"
+FRAMEWORK_SEARCH_PATHS[sdk=appletvos*] = $(inherited) "$CORONA_ROOT/Corona/tvos/frameworks/" "$PROJECT_DIR/../plugins-hosted-openssl/plugins/2016.2883/tvos"
+FRAMEWORK_SEARCH_PATHS[sdk=appletvsimulator*] = $(inherited) "$CORONA_ROOT/Corona/tvos/frameworks/" "$PROJECT_DIR/../plugins-hosted-openssl/plugins/2016.2883/tvos-sim"
+
+OTHER_LDFLAGS = $(inherited) -framework Corona_plugin_openssl
 
 HEADER_SEARCH_PATHS = $(inherited) "$CORONA_ROOT/Corona/tvos/frameworks/CoronaCards.framework/PrivateHeaders"
 

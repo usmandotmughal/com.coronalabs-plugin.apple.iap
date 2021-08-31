@@ -24,7 +24,7 @@ rm -rf OUT
 
 mkdir -p OUT/iap/mac-sim/ OUT/helper/mac-sim/
 cp mac/build/Release/plugin_apple_iap.dylib OUT/iap/mac-sim/
-cp mac/build/Release/plugin_apple_iap_cryptohelper.dylib OUT/helper/mac-sim/
+# cp mac/build/Release/plugin_apple_iap_cryptohelper.dylib OUT/helper/mac-sim/
 # Reconsider doing this
 cp plugins-hosted-openssl/plugins/2016.2883/mac-sim/plugin_openssl.dylib OUT/helper/mac-sim
 

@@ -44,5 +44,8 @@ checkError
 xcodebuild -project "$path/Plugin.xcodeproj" -configuration $CONFIG -target $TARGET_NAME
 checkError
 
+# xcodebuild -project "$path/Plugin.xcodeproj" -configuration $CONFIG -target plugin_apple_iap_cryptohelper
+# checkError
+
 cp "$path/build/Release/$TARGET_NAME.$OUTPUT_SUFFIX" "$OUTPUT_DIR"
-cp "$path/build/Release/plugin_apple_iap_cryptohelper.$OUTPUT_SUFFIX" "$OUTPUT_DIR"
+# cp "$path/build/Release/plugin_apple_iap_cryptohelper.$OUTPUT_SUFFIX" "$OUTPUT_DIR"

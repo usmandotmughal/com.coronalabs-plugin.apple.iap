@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 46;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -12,10 +12,9 @@
 		A49EC1551BD76ECE0093F529 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A49EC1531BD76ECE0093F529 /* Main.storyboard */; };
 		A49EC1571BD76ECE0093F529 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A49EC1561BD76ECE0093F529 /* Assets.xcassets */; };
 		F5815AC31EE5D6270027695F /* Corona_plugin_apple_iap.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A49EC1A91BD77C3A0093F529 /* Corona_plugin_apple_iap.framework */; };
-		F5815AC41EE5D6300027695F /* CoronaCards.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F5815AC11EE5D6070027695F /* CoronaCards.framework */; };
-		F5815AC51EE5D6300027695F /* CoronaCards.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F5815AC11EE5D6070027695F /* CoronaCards.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		F5CE5536216D43E3006CC53D /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F5CE5535216D43E3006CC53D /* StoreKit.framework */; };
-		F5CE553A216D45D7006CC53D /* Corona_plugin_openssl.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F5CE5538216D45C4006CC53D /* Corona_plugin_openssl.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		F5D01FF626DEBBBA00ADE119 /* CoronaCards.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = F5D01FF226DEBB7800ADE119 /* CoronaCards.xcframework */; };
+		F5D01FF726DEBBBA00ADE119 /* CoronaCards.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F5D01FF226DEBB7800ADE119 /* CoronaCards.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		F5E5F2571C6D0A4D0088E97A /* Corona_plugin_apple_iap.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A49EC1A91BD77C3A0093F529 /* Corona_plugin_apple_iap.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		F5F936CE216D3DA3000A1A2D /* Corona_plugin_apple_iap_cryptohelper.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F5F936CD216D3DA3000A1A2D /* Corona_plugin_apple_iap_cryptohelper.framework */; };
 		F5F936CF216D3DA3000A1A2D /* Corona_plugin_apple_iap_cryptohelper.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F5F936CD216D3DA3000A1A2D /* Corona_plugin_apple_iap_cryptohelper.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -66,9 +65,8 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				F5815AC51EE5D6300027695F /* CoronaCards.framework in Embed Frameworks */,
 				F5F936CF216D3DA3000A1A2D /* Corona_plugin_apple_iap_cryptohelper.framework in Embed Frameworks */,
-				F5CE553A216D45D7006CC53D /* Corona_plugin_openssl.framework in Embed Frameworks */,
+				F5D01FF726DEBBBA00ADE119 /* CoronaCards.xcframework in Embed Frameworks */,
 				F5E5F2571C6D0A4D0088E97A /* Corona_plugin_apple_iap.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
@@ -87,9 +85,8 @@
 		A49EC1911BD779870093F529 /* Plugin.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = Plugin.xcodeproj; sourceTree = "<group>"; };
 		A49EC1AE1BD77C890093F529 /* main.lua */ = {isa = PBXFileReference; lastKnownFileType = text; name = main.lua; path = ../Corona/main.lua; sourceTree = "<group>"; };
 		F5815ABD1EE5CBF50027695F /* CoronaNative.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = CoronaNative.xcconfig; sourceTree = "<group>"; };
-		F5815AC11EE5D6070027695F /* CoronaCards.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CoronaCards.framework; sourceTree = "<group>"; };
 		F5CE5535216D43E3006CC53D /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
-		F5CE5538216D45C4006CC53D /* Corona_plugin_openssl.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Corona_plugin_openssl.framework; sourceTree = "<group>"; };
+		F5D01FF226DEBB7800ADE119 /* CoronaCards.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = CoronaCards.xcframework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,8 +94,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F5815AC41EE5D6300027695F /* CoronaCards.framework in Frameworks */,
 				F5F936CE216D3DA3000A1A2D /* Corona_plugin_apple_iap_cryptohelper.framework in Frameworks */,
+				F5D01FF626DEBBBA00ADE119 /* CoronaCards.xcframework in Frameworks */,
 				F5CE5536216D43E3006CC53D /* StoreKit.framework in Frameworks */,
 				F5815AC31EE5D6270027695F /* Corona_plugin_apple_iap.framework in Frameworks */,
 			);
@@ -177,7 +174,7 @@
 		F5815AC01EE5D5D60027695F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				F5815AC11EE5D6070027695F /* CoronaCards.framework */,
+				F5D01FF226DEBB7800ADE119 /* CoronaCards.xcframework */,
 			);
 			name = Frameworks;
 			path = "${HOME}/Library/Application Support/Corona/Native/Corona/tvos/frameworks";
@@ -186,7 +183,6 @@
 		F5CE5534216D43E3006CC53D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				F5CE5538216D45C4006CC53D /* Corona_plugin_openssl.framework */,
 				F5CE5535216D43E3006CC53D /* StoreKit.framework */,
 			);
 			name = Frameworks;
@@ -246,6 +242,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				Base,
 			);
@@ -521,7 +518,10 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				DEVELOPMENT_TEAM = BG2J43EA88;
 				INFOPLIST_FILE = App/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.coronalabs.iCloudTestApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -536,7 +536,10 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				DEVELOPMENT_TEAM = BG2J43EA88;
 				INFOPLIST_FILE = App/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.coronalabs.iCloudTestApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};

@@ -3,18 +3,17 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 46;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
-		F5815AC81EE5D7320027695F /* CoronaCards.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F5815AC71EE5D7320027695F /* CoronaCards.framework */; };
 		F59D379C1F60896000400426 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F59D379B1F60895A00400426 /* UIKit.framework */; };
+		F5D01FF326DEBB8500ADE119 /* CoronaCards.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = F5D01FF126DEBB6800ADE119 /* CoronaCards.xcframework */; };
+		F5D01FF426DEBB8500ADE119 /* CoronaCards.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = F5D01FF126DEBB6800ADE119 /* CoronaCards.xcframework */; };
 		F5F936B2216D3AC3000A1A2D /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F59D379B1F60895A00400426 /* UIKit.framework */; };
-		F5F936B3216D3AC3000A1A2D /* CoronaCards.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F5815AC71EE5D7320027695F /* CoronaCards.framework */; };
 		F5F936C0216D3B48000A1A2D /* iap.m in Sources */ = {isa = PBXBuildFile; fileRef = F5F936BE216D3B48000A1A2D /* iap.m */; };
 		F5F936C3216D3B48000A1A2D /* IAPCryptoHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = F5F936BF216D3B48000A1A2D /* IAPCryptoHelper.m */; };
 		F5F936C6216D3B74000A1A2D /* Corona_plugin_apple_iap_cryptohelper.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F5F936BC216D3AC3000A1A2D /* Corona_plugin_apple_iap_cryptohelper.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
-		F5F936CA216D3C30000A1A2D /* Corona_plugin_openssl.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F5F936C9216D3C30000A1A2D /* Corona_plugin_openssl.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXBuildRule section */
@@ -23,6 +22,8 @@
 			compilerSpec = com.apple.compilers.proxy.script;
 			filePatterns = "*.lua";
 			fileType = pattern.proxy;
+			inputFiles = (
+			);
 			isEditable = 1;
 			outputFiles = (
 				"$(DERIVED_FILE_DIR)/$(INPUT_FILE_BASE).c",
@@ -34,6 +35,8 @@
 			compilerSpec = com.apple.compilers.proxy.script;
 			filePatterns = "*.lua";
 			fileType = pattern.proxy;
+			inputFiles = (
+			);
 			isEditable = 1;
 			outputFiles = (
 				"$(DERIVED_FILE_DIR)/$(INPUT_FILE_BASE).c",
@@ -55,13 +58,13 @@
 /* Begin PBXFileReference section */
 		A49EC1861BD779560093F529 /* Corona_plugin_apple_iap.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Corona_plugin_apple_iap.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A49EC18B1BD779560093F529 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = Plugin/Info.plist; sourceTree = "<group>"; };
+		F549A10E26DEC10D003BD44D /* Corona_plugin_openssl.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Corona_plugin_openssl.framework; path = Frameworks/Corona_plugin_openssl.framework; sourceTree = "<group>"; };
 		F5815ABF1EE5CC7B0027695F /* CoronaNative.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = CoronaNative.xcconfig; sourceTree = "<group>"; };
-		F5815AC71EE5D7320027695F /* CoronaCards.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CoronaCards.framework; sourceTree = "<group>"; };
 		F59D379B1F60895A00400426 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		F5D01FF126DEBB6800ADE119 /* CoronaCards.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = CoronaCards.xcframework; sourceTree = "<group>"; };
 		F5F936BC216D3AC3000A1A2D /* Corona_plugin_apple_iap_cryptohelper.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Corona_plugin_apple_iap_cryptohelper.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F5F936BE216D3B48000A1A2D /* iap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = iap.m; path = ../shared/iap.m; sourceTree = "<group>"; };
 		F5F936BF216D3B48000A1A2D /* IAPCryptoHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IAPCryptoHelper.m; path = ../shared/IAPCryptoHelper.m; sourceTree = "<group>"; };
-		F5F936C9216D3C30000A1A2D /* Corona_plugin_openssl.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Corona_plugin_openssl.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,7 +74,7 @@
 			files = (
 				F5F936C6216D3B74000A1A2D /* Corona_plugin_apple_iap_cryptohelper.framework in Frameworks */,
 				F59D379C1F60896000400426 /* UIKit.framework in Frameworks */,
-				F5815AC81EE5D7320027695F /* CoronaCards.framework in Frameworks */,
+				F5D01FF326DEBB8500ADE119 /* CoronaCards.xcframework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -79,9 +82,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F5F936CA216D3C30000A1A2D /* Corona_plugin_openssl.framework in Frameworks */,
 				F5F936B2216D3AC3000A1A2D /* UIKit.framework in Frameworks */,
-				F5F936B3216D3AC3000A1A2D /* CoronaCards.framework in Frameworks */,
+				F5D01FF426DEBB8500ADE119 /* CoronaCards.xcframework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -129,16 +131,16 @@
 		F5815AC61EE5D7050027695F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				F5815AC71EE5D7320027695F /* CoronaCards.framework */,
+				F5D01FF126DEBB6800ADE119 /* CoronaCards.xcframework */,
 			);
 			name = Frameworks;
-			path = "~/Library/Application Support/Corona/Native/Corona/tvos/frameworks";
+			path = "${HOME}/Library/Application Support/Corona/Native/Corona/tvos/frameworks";
 			sourceTree = "<absolute>";
 		};
 		F59D379A1F60895A00400426 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				F5F936C9216D3C30000A1A2D /* Corona_plugin_openssl.framework */,
+				F549A10E26DEC10D003BD44D /* Corona_plugin_openssl.framework */,
 				F59D379B1F60895A00400426 /* UIKit.framework */,
 			);
 			name = Frameworks;
@@ -224,6 +226,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 			);
 			mainGroup = A49EC17C1BD779560093F529;
@@ -403,6 +406,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				"EXCLUDED_ARCHS[sdk=appletvsimulator*]" = arm64;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -432,7 +436,11 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = Plugin/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.coronalabs.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -450,7 +458,11 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = Plugin/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.coronalabs.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -466,9 +478,17 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Frameworks",
+				);
 				INFOPLIST_FILE = Plugin/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.coronalabs.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -485,9 +505,17 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Frameworks",
+				);
 				INFOPLIST_FILE = Plugin/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.coronalabs.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;

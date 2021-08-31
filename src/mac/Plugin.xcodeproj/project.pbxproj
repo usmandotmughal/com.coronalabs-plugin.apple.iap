@@ -8,9 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		F56176BB216D68070036CB5D /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F56176BA216D68070036CB5D /* StoreKit.framework */; };
-		F56176BC216D681B0036CB5D /* plugin_apple_iap_cryptohelper.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F5F936A3216D368B000A1A2D /* plugin_apple_iap_cryptohelper.dylib */; settings = {ATTRIBUTES = (Weak, ); }; };
-		F5C824DA216DA043006B2DEF /* plugin_apple_iap.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = A49186401641DDB800A39286 /* plugin_apple_iap.dylib */; };
-		F5C824DB216DA043006B2DEF /* plugin_apple_iap_cryptohelper.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = F5F936A3216D368B000A1A2D /* plugin_apple_iap_cryptohelper.dylib */; };
 		F5F93695216D31A2000A1A2D /* iap.m in Sources */ = {isa = PBXBuildFile; fileRef = F5F93693216D31A2000A1A2D /* iap.m */; };
 		F5F936A4216D36AC000A1A2D /* IAPCryptoHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = F5F93694216D31A2000A1A2D /* IAPCryptoHelper.m */; };
 		F5F936A6216D3786000A1A2D /* plugin_openssl.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F5F936A5216D3786000A1A2D /* plugin_openssl.dylib */; };
@@ -22,6 +19,8 @@
 			compilerSpec = com.apple.compilers.proxy.script;
 			filePatterns = "*.lua";
 			fileType = pattern.proxy;
+			inputFiles = (
+			);
 			isEditable = 1;
 			outputFiles = (
 				"$TARGET_TEMP_DIR/$(INPUT_FILE_BASE).c",
@@ -33,6 +32,8 @@
 			compilerSpec = com.apple.compilers.proxy.script;
 			filePatterns = "*.lua";
 			fileType = pattern.proxy;
+			inputFiles = (
+			);
 			isEditable = 1;
 			outputFiles = (
 				"$TARGET_TEMP_DIR/$(INPUT_FILE_BASE).c",
@@ -40,30 +41,6 @@
 			script = "CORONA_DIR=$CORONA_ROOT/Corona\nCORONA_MAC_BIN_DIR=$CORONA_DIR/mac/bin\n\nif [ -e \"$CORONA_MAC_BIN_DIR/lua\" ]; then\n    LUA_DIR=$CORONA_MAC_BIN_DIR/lua\nelse\n    echo \"Could not find proper 32-bit lua build in: $CORONA_MAC_BIN_DIR/lua\"\n    exit 1\nfi\n\necho $CORONA_MAC_BIN_DIR/lua2c.sh $INPUT_FILE_PATH $TARGET_TEMP_DIR $CONFIGURATION\n\"$CORONA_MAC_BIN_DIR/lua2c.sh\" \"$INPUT_FILE_PATH\" \"$TARGET_TEMP_DIR\" \"$CONFIGURATION\" \"$CORONA_MAC_BIN_DIR\"\n";
 		};
 /* End PBXBuildRule section */
-
-/* Begin PBXContainerItemProxy section */
-		F5F936A7216D3798000A1A2D /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = A482DA7A15F9B7E70084DC42 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = F5F93698216D368B000A1A2D;
-			remoteInfo = plugin_apple_iap_cryptohelper;
-		};
-/* End PBXContainerItemProxy section */
-
-/* Begin PBXCopyFilesBuildPhase section */
-		F5C824D9216DA02F006B2DEF /* CopyFiles */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "$HOME/Library/Application Support/Corona/Simulator/Plugins";
-			dstSubfolderSpec = 0;
-			files = (
-				F5C824DA216DA043006B2DEF /* plugin_apple_iap.dylib in CopyFiles */,
-				F5C824DB216DA043006B2DEF /* plugin_apple_iap_cryptohelper.dylib in CopyFiles */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		A4430897164C70D800B9117B /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -81,7 +58,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F56176BC216D681B0036CB5D /* plugin_apple_iap_cryptohelper.dylib in Frameworks */,
 				F56176BB216D68070036CB5D /* StoreKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -171,13 +147,11 @@
 				A49186341641DDB800A39286 /* Sources */,
 				A49186381641DDB800A39286 /* Frameworks */,
 				A491863A1641DDB800A39286 /* Headers */,
-				F5C824D9216DA02F006B2DEF /* CopyFiles */,
 			);
 			buildRules = (
 				A491863C1641DDB800A39286 /* PBXBuildRule */,
 			);
 			dependencies = (
-				F5F936A8216D3798000A1A2D /* PBXTargetDependency */,
 			);
 			name = plugin_apple_iap;
 			productName = ads;
@@ -217,6 +191,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 			);
 			mainGroup = A482DA7815F9B7E70084DC42;
@@ -296,14 +271,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		F5F936A8216D3798000A1A2D /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = F5F93698216D368B000A1A2D /* plugin_apple_iap_cryptohelper */;
-			targetProxy = F5F936A7216D3798000A1A2D /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		A482DA9715F9B7E70084DC42 /* Debug */ = {
