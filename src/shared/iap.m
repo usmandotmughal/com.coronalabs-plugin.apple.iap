@@ -689,6 +689,19 @@ static int appleIAP_continueDeferred(lua_State *L)
     return 1;
 }
 
+static int appleIAP_presentCodeRedemptionSheet(lua_State *L)
+{
+	bool available = false;
+#if TARGET_OS_IOS
+	if (@available(iOS 14.0, *)) {
+		[[SKPaymentQueue defaultQueue] presentCodeRedemptionSheet];
+		available = true;
+	}
+#endif
+	lua_pushboolean(L, available);
+    return 1;
+}
+
 static int appleIAP_finishTransaction(lua_State *L)
 {
 	lua_getmetatable(L, 1);
@@ -882,6 +895,7 @@ CORONA_EXPORT int luaopen_plugin_apple_iap( lua_State *L )
 
 		{ "deferStorePurchases", appleIAP_deferPurchases },
 		{ "proceedToPayment", appleIAP_continueDeferred },
+		{ "presentCodeRedemptionSheet", appleIAP_presentCodeRedemptionSheet },
 
 		{ "receiptRawData", appleIAP_rawReceiptData },
 		{ "receiptBase64Data", appleIAP_base64ReceiptData },
