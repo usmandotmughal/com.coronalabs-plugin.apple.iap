@@ -310,10 +310,20 @@ static int appleIAP_StoreValues( lua_State *L )
 {
 	int nRet = 0;
 	const char *key = luaL_checkstring( L, 2 );
-	
 	if ( 0 == strcmp( "isActive", key ) )
 	{
-		lua_pushboolean(L, 1);
+        #if TARGET_OS_IOS
+            if (@available(iOS 14.0, *)) {
+        #elif TARGET_OS_MAC
+            if (@available(macOS 11.0, *)) {
+        #elif TARGET_OS_TV
+            if (@available(tvOS 14.0, *)) {
+        #endif
+            
+            lua_pushboolean(L, [[SKPaymentQueue defaultQueue] transactionObservers].count > 0 ? 1 : 0 );
+        } else {
+            lua_pushboolean(L, 1);
+        }
 		nRet = 1;
 	}
 	else if ( 0 == strcmp( "canMakePurchases", key ) )
@@ -355,8 +365,8 @@ static int appleIAP_init(lua_State *L)
 		observer.transactionListener = listener;
 		dispatch_async(dispatch_get_main_queue(), ^{
 			[[SKPaymentQueue defaultQueue] addTransactionObserver:observer];
+            
 		});
-		
 		dispatch_async(dispatch_get_main_queue(), ^{
 			CoronaLuaNewEvent(L, "init");
 			
