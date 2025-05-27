@@ -8,7 +8,7 @@ application =
 	content =
 	{
 		width = 320,
-		height = 480,
+		height = 568,
 		scale = "zoomEven",
 		-- scale = "letterbox",
 		-- scale = "none",
