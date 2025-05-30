@@ -63,21 +63,6 @@ static const char* kAppleIAP_PaymentMetatdata = "kApplePayment-2444635A037B";
 	[[SKPaymentQueue defaultQueue] removeTransactionObserver:self];
 }
 
-API_AVAILABLE(ios(12.2))
-static SKPaymentDiscount *createDiscountOffer(NSString *offerIdentifier,
-                                              NSString *keyIdentifier,
-                                              NSString *discountSignature,
-                                              NSUUID *nonce,
-                                              NSNumber *timestamp) {
-    // Initialize and return the SKPaymentDiscount object
-    SKPaymentDiscount *discountOffer = [[SKPaymentDiscount alloc] initWithIdentifier:offerIdentifier
-                                                                       keyIdentifier:keyIdentifier
-                                                                                 nonce:nonce
-                                                                            signature:discountSignature
-                                                                            timestamp:timestamp];
-    return discountOffer;
-}
-
 
 - (void)paymentQueue:(nonnull SKPaymentQueue *)queue updatedTransactions:(nonnull NSArray<SKPaymentTransaction *> *)transactions {
 	for (SKPaymentTransaction* transaction in transactions)
@@ -552,8 +537,6 @@ void pushProductTable(lua_State *L, SKProduct *product) {
                 lua_rawseti(L, -2, i++);
             }
             lua_setfield(L, -2, "discounts");
-        } else {
-            NSLog(@"No discounts for product: %@", product.productIdentifier);
         }
     }
 }
@@ -710,109 +693,60 @@ static int appleIAP_purchase(lua_State *L)
 	[productIdentifiers release];
 	return 0;
 }
-        
+
+static NSString* NSStringFromField(lua_State* L, const char* fieldName)
+{
+	lua_getfield(L, 1, fieldName);
+	NSString* ret = lua_isnil(L, -1) ? @"" : [NSString stringWithUTF8String:lua_tostring(L, -1)];
+	lua_pop(L, 1);
+	return ret;
+}
+
 static int appleIAP_purchase_promotional_offer(lua_State *L)
 {
-
     if (@available(iOS 12.2, *)) {
         AppleIAPTransactionObserver *observer = [AppleIAPTransactionObserver toobserver:L];
         
-        int promotionalOfferTableIndex = 1;
-        
-        NSMutableArray* productIdentifiers = [[NSMutableArray alloc] init];
         if ( !lua_istable( L, 1 )    )
         {
             NSLog(@"Invalid parameters. Expected a table.");
             return 0;
         } else {
+			NSString *productIdentifier = NSStringFromField(L, "productIdentifier");
+            NSString *offerIdentifier = NSStringFromField(L, "offerIdentifier");
+            NSString *keyIdentifier = NSStringFromField(L, "keyIdentifier");
+            NSString *signature = NSStringFromField(L, "signature");
+            NSString *nonce = NSStringFromField(L, "nonce");
+            NSString *appAccountToken = NSStringFromField(L, "appAccountToken");
             
-            lua_getfield(L, promotionalOfferTableIndex, "keyIdentifier");
-            NSString *keyIdentifier = lua_isnil(L, -1) ? @"" : [[NSString alloc] initWithUTF8String:lua_tostring(L, -1)];
-            lua_pop(L, 1);
-
-            lua_getfield(L, promotionalOfferTableIndex, "productIdentifier");
-            NSString *productIdentifier = lua_isnil(L, -1) ? @"" : [[NSString alloc] initWithUTF8String:lua_tostring(L, -1)];
-            lua_pop(L, 1);
-
-            lua_getfield(L, promotionalOfferTableIndex, "offerIdentifier");
-            NSString *offerIdentifier = lua_isnil(L, -1) ? @"" : [[NSString alloc] initWithUTF8String:lua_tostring(L, -1)];
-            lua_pop(L, 1);
-
-            lua_getfield(L, promotionalOfferTableIndex, "signature");
-            NSString *signature = lua_isnil(L, -1) ? @"" : [[NSString alloc] initWithUTF8String:lua_tostring(L, -1)];
-            lua_pop(L, 1);
-
-            lua_getfield(L, promotionalOfferTableIndex, "appAccountToken");
-            NSString *appAccountToken = lua_isnil(L, -1) ? @"" : [[NSString alloc] initWithUTF8String:lua_tostring(L, -1)];
-            lua_pop(L, 1);
-            
-            lua_getfield(L, promotionalOfferTableIndex, "nonce");
-            NSString *nonce = lua_isnil(L, -1) ? @"" : [[NSString alloc] initWithUTF8String:lua_tostring(L, -1)];
-            lua_pop(L, 1);
-            
-            lua_getfield(L, promotionalOfferTableIndex, "timestamp");
-            NSNumber *timestamp = nil;
+            lua_getfield(L, 1, "timestamp");
+            NSNumber *timestamp = @(0);
 
             if (!lua_isnil(L, -1) && lua_isnumber(L, -1)) {
                 double timestampValue = lua_tonumber(L, -1);
                 timestamp = @(timestampValue);
-            } else {
-                timestamp = @(0); // Or handle error / set to nil
             }
             lua_pop(L, 1);
 
-            [productIdentifiers addObject:productIdentifier];
-            [productIdentifier release];
-            
-            NSCountedSet* counted_set = [[[NSCountedSet alloc] initWithArray:productIdentifiers] autorelease];
+			SKProduct *product = [observer.loadedProducts objectForKey:productIdentifier];
+			if (product) {
+				SKMutablePayment* payment = [SKMutablePayment paymentWithProduct:product];
+				
+				payment.quantity = 1;
+				NSUUID *nonceUUID = [[[NSUUID alloc] initWithUUIDString:nonce] autorelease];
 
-            // Iterate over each unique productId
-            for( NSString* productId in counted_set )
-            {
-                SKMutablePayment* payment = nil;
-                
-                // Fetch the product object using productId
-                SKProduct *product = [observer.loadedProducts objectForKey:productId];
-                if (product) {
-                    payment = [SKMutablePayment paymentWithProduct:product];
-                }
-                else {
-                    // Handle case where product is not found
-                    payment = nil;
-                }
-                
-                if (payment) {
-                    
-                    payment.quantity = [counted_set countForObject:productId];
-                    NSUUID *nonceStr = [[NSUUID alloc] initWithUUIDString:nonce];
+				SKPaymentDiscount *discountOffer =
+						[[[SKPaymentDiscount alloc] initWithIdentifier:offerIdentifier
+														 keyIdentifier:keyIdentifier
+																 nonce:nonceUUID
+															 signature:signature
+															 timestamp:timestamp] autorelease];
 
-                    SKPaymentDiscount *discountOffer = createDiscountOffer(offerIdentifier,
-                                                                      keyIdentifier,
-                                                                      signature,
-                                                                      nonceStr,
-                                                                      timestamp);
-                    
-                    [nonceStr release];
-                    
-                    // Assign the discount offer to the payment
-                    payment.paymentDiscount = discountOffer;
-                    
-                    payment.applicationUsername = appAccountToken;
-
-                    // Add the payment to the queue
-                    [[SKPaymentQueue defaultQueue] addPayment:payment];
-                }
-            }
-            
-            [productIdentifiers release];
-            [keyIdentifier release];
-            [offerIdentifier release];
-            [signature release];
-            [appAccountToken release];
-            [nonce release];
+				payment.paymentDiscount = discountOffer;
+				payment.applicationUsername = appAccountToken;
+				[[SKPaymentQueue defaultQueue] addPayment:payment];
+			}
         }
-    }else{
-        NSLog(@"Discounted offer feature not available.");
     }
     return 0;
 }
@@ -1053,7 +987,7 @@ CORONA_EXPORT int luaopen_plugin_apple_iap( lua_State *L )
 		{ "init", appleIAP_init },
 		{ "loadProducts", appleIAP_loadProducts },
 		{ "purchase", appleIAP_purchase },
-        { "purchasePromotionalOffer", appleIAP_purchase_promotional_offer },
+		{ "purchasePromotionalOffer", appleIAP_purchase_promotional_offer },
 		{ "finishTransaction", appleIAP_finishTransaction },
 		{ "restore", appleIAP_restoreCompletedTransactions },
 
