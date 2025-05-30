@@ -3,8 +3,11 @@ local store = require "plugin.apple.iap"
 
 print("Store target", store.target)
 
-local y = 50
+local y = 70
 local x = display.contentCenterX
+
+local isPromotionalOfferPurchase = false
+local purchaseAdditionalTest = (isPromotionalOfferPurchase == true) and "Promotional Offer: " or ""
 
 local prodList = {
     "com.coronalabs.IapTest.pc10",
@@ -80,9 +83,25 @@ store.loadProducts(prodList, function(event)
     local products = event.products or {}
     for i=1, #products do
         local p = products[i]
-        local rc = display.newText(p.title .. ' ' .. p.localizedPrice, x, y)
+        local rc = display.newText(purchaseAdditionalTest .. p.title .. ' ' .. p.localizedPrice, x, y)
         rc:addEventListener("tap", function()
-            store.purchase(p.productIdentifier)
+            if isPromotionalOfferPurchase then
+                -- https://developer.apple.com/documentation/StoreKit/generating-a-promotional-offer-signature-on-the-server
+                -- https://github.com/apple/app-store-server-library-node
+                -- https://developer.apple.com/documentation/storekit/implementing-promotional-offers-in-your-app
+                local offerParameters = {
+                    keyIdentifier = "FKJB7P8VN6",
+                    productIdentifier = p.productIdentifier,
+                    offerIdentifier = "free_for_1_year",
+                    signature = "MEUCIEfJm+oJM4w+eMe+HZguhFFlbUj2Qk/juACY3u7WK9LRAiEA9ips3wL2BST2VdA5Fiyl7ANigLrcrUKaDHBC8iraTQw=",
+                    appAccountToken = "user_1",
+                    nonce = "1c047e53-8dde-497b-ae63-cb0cd4ca1f30",
+                    timestamp = 1748348199738
+                }
+                store.purchasePromotionalOffer(offerParameters)
+            else
+                store.purchase(p.productIdentifier)    
+            end
             native.setActivityIndicator( true )
         end)
         y = y+rc.height*1.2

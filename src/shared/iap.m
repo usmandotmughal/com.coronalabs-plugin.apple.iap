@@ -509,6 +509,33 @@ void pushProductTable(lua_State *L, SKProduct *product) {
 	
 	lua_pushstring(L, [[[product priceLocale] objectForKey:NSLocaleCurrencyCode] UTF8String]);
 	lua_setfield(L, -2, "priceCurrencyCode");
+    
+    if (@available(iOS 12.2, *)) {
+        NSArray<SKProductDiscount *> *discounts = product.discounts;
+        lua_newtable(L);
+		int i=1;
+		for (SKProductDiscount *discount in discounts) {
+			lua_createtable(L, (int)discounts.count, 0);
+
+			lua_pushstring(L, [discount.identifier UTF8String]);
+			lua_setfield(L, -2, "offerIdentifier");
+			lua_pushnumber(L, [discount.price doubleValue]);
+			lua_setfield(L, -2, "price");
+			lua_pushstring(L, [discount.priceLocale.currencyCode UTF8String]);
+			lua_setfield(L, -2, "priceCurrencyCode");
+			NSNumberFormatter *numberFormatter = [[NSNumberFormatter alloc] init];
+			[numberFormatter setFormatterBehavior:NSNumberFormatterBehavior10_4];
+			[numberFormatter setNumberStyle:NSNumberFormatterCurrencyStyle];
+			[numberFormatter setLocale:discount.priceLocale];
+			lua_pushstring(L, [[numberFormatter stringFromNumber:discount.price] UTF8String]);
+			lua_setfield(L, -2, "localizedPrice");
+			[numberFormatter release];
+
+			lua_rawseti(L, -2, i++);
+		}
+
+        lua_setfield(L, -2, "discounts");
+    }
 }
 
 - (void)productsRequest:(nonnull SKProductsRequest *)request didReceiveResponse:(nonnull SKProductsResponse *)response {
@@ -662,6 +689,63 @@ static int appleIAP_purchase(lua_State *L)
 	
 	[productIdentifiers release];
 	return 0;
+}
+
+static NSString* NSStringFromField(lua_State* L, const char* fieldName)
+{
+	lua_getfield(L, 1, fieldName);
+	NSString* ret = lua_isnil(L, -1) ? @"" : [NSString stringWithUTF8String:lua_tostring(L, -1)];
+	lua_pop(L, 1);
+	return ret;
+}
+
+static int appleIAP_purchase_promotional_offer(lua_State *L)
+{
+    if (@available(iOS 12.2, *)) {
+        AppleIAPTransactionObserver *observer = [AppleIAPTransactionObserver toobserver:L];
+        
+        if ( !lua_istable( L, 1 )    )
+        {
+            NSLog(@"Invalid parameters. Expected a table.");
+            return 0;
+        } else {
+			NSString *productIdentifier = NSStringFromField(L, "productIdentifier");
+            NSString *offerIdentifier = NSStringFromField(L, "offerIdentifier");
+            NSString *keyIdentifier = NSStringFromField(L, "keyIdentifier");
+            NSString *signature = NSStringFromField(L, "signature");
+            NSString *nonce = NSStringFromField(L, "nonce");
+            NSString *appAccountToken = NSStringFromField(L, "appAccountToken");
+            
+            lua_getfield(L, 1, "timestamp");
+            NSNumber *timestamp = @(0);
+
+            if (!lua_isnil(L, -1) && lua_isnumber(L, -1)) {
+                double timestampValue = lua_tonumber(L, -1);
+                timestamp = @(timestampValue);
+            }
+            lua_pop(L, 1);
+
+			SKProduct *product = [observer.loadedProducts objectForKey:productIdentifier];
+			if (product) {
+				SKMutablePayment* payment = [SKMutablePayment paymentWithProduct:product];
+				
+				payment.quantity = 1;
+				NSUUID *nonceUUID = [[[NSUUID alloc] initWithUUIDString:nonce] autorelease];
+
+				SKPaymentDiscount *discountOffer =
+						[[[SKPaymentDiscount alloc] initWithIdentifier:offerIdentifier
+														 keyIdentifier:keyIdentifier
+																 nonce:nonceUUID
+															 signature:signature
+															 timestamp:timestamp] autorelease];
+
+				payment.paymentDiscount = discountOffer;
+				payment.applicationUsername = appAccountToken;
+				[[SKPaymentQueue defaultQueue] addPayment:payment];
+			}
+        }
+    }
+    return 0;
 }
 
 static int appleIAP_deferPurchases(lua_State *L)
@@ -900,6 +984,7 @@ CORONA_EXPORT int luaopen_plugin_apple_iap( lua_State *L )
 		{ "init", appleIAP_init },
 		{ "loadProducts", appleIAP_loadProducts },
 		{ "purchase", appleIAP_purchase },
+		{ "purchasePromotionalOffer", appleIAP_purchase_promotional_offer },
 		{ "finishTransaction", appleIAP_finishTransaction },
 		{ "restore", appleIAP_restoreCompletedTransactions },
 
