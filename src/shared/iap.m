@@ -512,32 +512,29 @@ void pushProductTable(lua_State *L, SKProduct *product) {
     
     if (@available(iOS 12.2, *)) {
         NSArray<SKProductDiscount *> *discounts = product.discounts;
-        if (discounts.count > 0) {
-            lua_newtable(L);
-            int i=1;
-            for (SKProductDiscount *discount in discounts) {
-                // Handle the promotional offers (discounts) here
-                lua_createtable(L, (int)discounts.count, 0);
-                {
-                    lua_pushstring(L, [discount.identifier UTF8String]);
-                    lua_setfield(L, -2, "offerIdentifier");
-                    lua_pushnumber(L, [discount.price doubleValue]);
-                    lua_setfield(L, -2, "price");
-                    lua_pushstring(L, [discount.priceLocale.currencyCode UTF8String]);
-                    lua_setfield(L, -2, "priceCurrencyCode");
-                    NSNumberFormatter *numberFormatter = [[NSNumberFormatter alloc] init];
-                    [numberFormatter setFormatterBehavior:NSNumberFormatterBehavior10_4];
-                    [numberFormatter setNumberStyle:NSNumberFormatterCurrencyStyle];
-                    [numberFormatter setLocale:discount.priceLocale];
-                    lua_pushstring(L, [[numberFormatter stringFromNumber:discount.price] UTF8String]);
-                    lua_setfield(L, -2, "localizedPrice");
-                    [numberFormatter release];
-                }
-                
-                lua_rawseti(L, -2, i++);
-            }
-            lua_setfield(L, -2, "discounts");
-        }
+        lua_newtable(L);
+		int i=1;
+		for (SKProductDiscount *discount in discounts) {
+			lua_createtable(L, (int)discounts.count, 0);
+
+			lua_pushstring(L, [discount.identifier UTF8String]);
+			lua_setfield(L, -2, "offerIdentifier");
+			lua_pushnumber(L, [discount.price doubleValue]);
+			lua_setfield(L, -2, "price");
+			lua_pushstring(L, [discount.priceLocale.currencyCode UTF8String]);
+			lua_setfield(L, -2, "priceCurrencyCode");
+			NSNumberFormatter *numberFormatter = [[NSNumberFormatter alloc] init];
+			[numberFormatter setFormatterBehavior:NSNumberFormatterBehavior10_4];
+			[numberFormatter setNumberStyle:NSNumberFormatterCurrencyStyle];
+			[numberFormatter setLocale:discount.priceLocale];
+			lua_pushstring(L, [[numberFormatter stringFromNumber:discount.price] UTF8String]);
+			lua_setfield(L, -2, "localizedPrice");
+			[numberFormatter release];
+
+			lua_rawseti(L, -2, i++);
+		}
+
+        lua_setfield(L, -2, "discounts");
     }
 }
 
