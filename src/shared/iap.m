@@ -791,7 +791,9 @@ static int appleIAP_purchase_promotional_offer(lua_State *L)
                                                                       signature,
                                                                       nonceStr,
                                                                       timestamp);
-
+                    
+                    [nonceStr release];
+                    
                     // Assign the discount offer to the payment
                     payment.paymentDiscount = discountOffer;
                     
@@ -803,7 +805,11 @@ static int appleIAP_purchase_promotional_offer(lua_State *L)
             }
             
             [productIdentifiers release];
-            
+            [keyIdentifier release];
+            [offerIdentifier release];
+            [signature release];
+            [appAccountToken release];
+            [nonce release];
         }
     }else{
         NSLog(@"Discounted offer feature not available.");
