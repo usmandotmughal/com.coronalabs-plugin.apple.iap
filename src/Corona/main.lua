@@ -78,6 +78,21 @@ rc:addEventListener("tap", function()
 end)
 y = y+rc.height*1.2
 
+local rc = display.newText("Check Intro Offer Eligibility", x, y)
+rc:addEventListener("tap", function()
+    native.setActivityIndicator( true )
+    store.isEligibleForIntroOffer("com.coronalabs.IapTest.sub", function(event)
+        print( "isEligibleForIntroOffer event : ", json.encode(event) )
+        if event.eligibility then
+            print("intro offer is available")
+        else
+            print("intro offer is not available")
+        end
+        native.setActivityIndicator( false )
+    end)
+end)
+y = y+rc.height*1.5
+
 store.loadProducts(prodList, function(event)
     print("LOADED PRODUCTS", json.prettify(event))
     local products = event.products or {}

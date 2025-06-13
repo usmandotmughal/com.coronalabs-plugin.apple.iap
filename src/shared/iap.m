@@ -7,6 +7,7 @@
 #include <Foundation/Foundation.h>
 #include <StoreKit/StoreKit.h>
 #include <CoronaLuaObjCHelper.h>
+#import "plugin_iap-Swift.h"
 
 
 CORONA_EXPORT int luaopen_plugin_apple_iap( lua_State *L );
@@ -16,6 +17,7 @@ static const char* kAppleIAP_ReceipEvent = "receiptRequest";
 static const char* kAppleIAP_TransactionEvent = "storeTransaction";
 static const char* kAppleIAP_AppStorePurchaseEvent = "appStorePurchase";
 static const char* kAppleIAP_LoadEvent = "productList";
+static const char* kAppleIAP_IntroOffer = "introOfferEligibility";
 
 static const char* kAppleIAP_TransactionMetatdata = "kAppleIAP-2444635A037B";
 static const char* kAppleIAP_PaymentMetatdata = "kApplePayment-2444635A037B";
@@ -795,6 +797,35 @@ static int appleIAP_presentCodeRedemptionSheet(lua_State *L)
 	lua_pushboolean(L, available);
     return 1;
 }
+    
+static void DispatchIntroOfferEvent(lua_State *L, CoronaLuaRef listener, BOOL eligible)
+{
+    CoronaLuaNewEvent(L, kAppleIAP_IntroOffer);
+    lua_pushboolean(L, eligible);
+    lua_setfield(L, -2, "eligibility");
+    CoronaLuaDispatchEvent(L, listener, 0);
+}
+        
+static int appleIAP_isEligibleForIntroOffer(lua_State *L)
+{
+    if(!lua_isstring(L, 1) || !CoronaLuaIsListener(L, 2, kAppleIAP_IntroOffer)) {
+        NSLog(@"Apple IAP: ERROR check parameters! Expect string and listener, got '%s' and '%s'", luaL_typename(L, 1), luaL_typename(L, 2));
+        return 0;
+    }
+    CoronaLuaRef listener = CoronaLuaNewRef(L, 2);
+    NSString* productIdentifier = [[NSString alloc] initWithUTF8String:lua_tostring( L, 1 )];
+
+    if (@available(iOS 15.0, *)) {
+        [[StoreKitHelper shared] isEligibleForIntroOfferFor:productIdentifier completion:^(BOOL eligible) {
+            [productIdentifier release];
+            DispatchIntroOfferEvent(L, listener, eligible);
+        }];
+    } else {
+        NSLog(@"Apple IAP: Warning! Eligibility check for introductory offers is not supported on devices running below iOS 15.0");
+        DispatchIntroOfferEvent(L, listener, false);
+    }
+    return 0;
+}
 
 static int appleIAP_finishTransaction(lua_State *L)
 {
@@ -997,6 +1028,8 @@ CORONA_EXPORT int luaopen_plugin_apple_iap( lua_State *L )
 		{ "receiptDecrypted", appleIAP_decryptedReceipt },
 		{ "receiptAvailable", appleIAP_receiptAvailable },
 		{ "receiptRequest", appleIAP_requestReceipt },
+        
+        { "isEligibleForIntroOffer", appleIAP_isEligibleForIntroOffer },
 		{ NULL, NULL }
 	};
 #ifdef TARGET_OS_OSX

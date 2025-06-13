@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B0EB63902DFC0D830033DBB7 /* StoreKitHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0EB638F2DFC0D830033DBB7 /* StoreKitHelper.swift */; };
 		F5F1A4E3216C17BF00411A11 /* iap.m in Sources */ = {isa = PBXBuildFile; fileRef = A447B617165D734C009EA762 /* iap.m */; };
 		F5F87CA9216AB0C500AFDE1E /* IAPCryptoHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = F5F87C99216AAEBD00AFDE1E /* IAPCryptoHelper.m */; };
 /* End PBXBuildFile section */
@@ -45,6 +46,8 @@
 /* Begin PBXFileReference section */
 		A447B617165D734C009EA762 /* iap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = iap.m; path = ../shared/iap.m; sourceTree = "<group>"; };
 		A4E253B6166D6FB300DCDC2C /* libplugin_iap.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libplugin_iap.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		B0EB638A2DFC0C7A0033DBB7 /* Plugin-IAP-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Plugin-IAP-Bridging-Header.h"; sourceTree = "<group>"; };
+		B0EB638F2DFC0D830033DBB7 /* StoreKitHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreKitHelper.swift; sourceTree = "<group>"; };
 		F572F81A1EE0705B001BC814 /* CoronaNative.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = CoronaNative.xcconfig; sourceTree = "<group>"; };
 		F5F87C99216AAEBD00AFDE1E /* IAPCryptoHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = IAPCryptoHelper.m; path = ../shared/IAPCryptoHelper.m; sourceTree = "<group>"; };
 		F5F87CA8216AAFA900AFDE1E /* libplugin_iap_cryptohelper.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libplugin_iap_cryptohelper.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -73,6 +76,8 @@
 			children = (
 				F5F87C99216AAEBD00AFDE1E /* IAPCryptoHelper.m */,
 				A447B617165D734C009EA762 /* iap.m */,
+				B0EB638A2DFC0C7A0033DBB7 /* Plugin-IAP-Bridging-Header.h */,
+				B0EB638F2DFC0D830033DBB7 /* StoreKitHelper.swift */,
 			);
 			name = Source;
 			sourceTree = "<group>";
@@ -150,6 +155,11 @@
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 1250;
+				TargetAttributes = {
+					A4E253B5166D6FB300DCDC2C = {
+						LastSwiftMigration = 1620;
+					};
+				};
 			};
 			buildConfigurationList = A484111315114F700074BD57 /* Build configuration list for PBXProject "IAPPlugin" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -208,6 +218,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B0EB63902DFC0D830033DBB7 /* StoreKitHelper.swift in Sources */,
 				F5F1A4E3216C17BF00411A11 /* iap.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -336,6 +347,7 @@
 		A4E253C0166D6FB300DCDC2C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -345,12 +357,16 @@
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "Plugin-IAP-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 6.0;
 			};
 			name = Debug;
 		};
 		A4E253C1166D6FB300DCDC2C /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -360,6 +376,8 @@
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "Plugin-IAP-Bridging-Header.h";
+				SWIFT_VERSION = 6.0;
 			};
 			name = Release;
 		};
